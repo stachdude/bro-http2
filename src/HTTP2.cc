@@ -149,9 +149,9 @@ void HTTP2_Analyzer::DeliverStream(int len, const u_char* data, bool orig){
             // Create frame reassemblers which will stitch frames together
             this->initReassemblers();
 #if ZEEK_VERSION_NUMBER >= 40200
-            AnalyzerConfirmation(); // Notify system that this is HTTP2.
+            analyzer_confirmation(); // Notify system that this is HTTP2.
 #else // < Zeek 4.2
-            ProtocolConfirmation(); // Notify system that this is HTTP2.
+            analyzer_violation(); // Notify system that this is HTTP2.
 #endif
             DEBUG_INFO("Connection Preface Detected: [%p]!\n", Conn());
         }
